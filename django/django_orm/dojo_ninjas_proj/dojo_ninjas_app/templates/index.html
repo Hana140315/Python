@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <table>
+        <tr>
+            <th> <h1>Adding Dojo</h1></th>
+            <th> <h1>Adding Ninja</h1></th>
+        </tr>
+        <tr>
+            <td>
+                <form action="/addojo", method="POST">
+                    {% csrf_token %}
+                    <label for="Name"> Dojo Name: </label>
+                    <input type="text" name="name"><br>
+                    <label for="City"> Dojo City: </label>
+                    <input type="text" name="city"><br>
+                    <label for="State"> Dojo State: </label>
+                    <input type="text" name="state"><br>
+                    <input type="submit" name="Add">
+                </form>
+            </td>
+            <td>
+                <form action="/addninja", method="POST">
+                    {% csrf_token %}
+                    <label for="FirstName"> Ninja First Name: </label>
+                    <input type="text" name="fisrt_name"><br>
+                    <label for="lastName"> Ninja Last Name: </label>
+                    <input type="text" name="last_name"><br>
+                    <label for="NinijaDojo"> Ninja Dojo: </label>
+                    <select name=" dojo_id">
+                        <option value=""> Select the dojo- </option>
+                        {% for dojo in dojos %}
+                        <option value="{{dojo_id}}">{{ dojo.name}}</option>
+                        {%endfor%}
+                    </select><br>
+                    <input type="submit" name="Add">
+                </form>
+            </td>
+        </tr>
+    </table><hr><hr>
+        <h1>ِِAll the Dojos</h1><br>
+        <ul>
+            {% for dojo in dojos %} <br>
+            <li>Ninja at {{ dojo.name }} Dojo</li>
+        </ul>
+        {%endfor%}
+</body>
+</html>

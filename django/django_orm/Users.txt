@@ -1,0 +1,19 @@
+user= Users.objects.create(first_name="Shady", last_name="Shareef",email="shadi@gmail.com", age=28)
+user= Users.objects.create(first_name="Hana", last_name="AlBidaq",email="hana@gmail.com", age=44)
+user= Users.objects.create(first_name="Saad", last_name="Hroub",email="Saad@gmail.com", age=35)
+
+print(user)
+
+Users.objects.first()
+Users.objects.last()
+
+edit= Users.objects.get(id=3)
+edit.last_name = "Pancakes"
+edit.save()
+
+d= Users.objects.get(id=2)
+d.delete()
+
+Users.objects.all().order_by("first_name")
+
+Users.objects.all().order_by("-first_name")

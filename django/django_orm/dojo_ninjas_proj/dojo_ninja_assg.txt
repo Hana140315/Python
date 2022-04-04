@@ -1,0 +1,33 @@
+dojo= Dojo.objects.create(name="Majed", city="Ramallah",state="Palestine")
+dojo= Dojo.objects.create(name="Hana", city="Hebron",state="Germany")
+dojo= Dojo.objects.create(name="Shady", city="Hebron",state="Italy")
+
+
+d= Dojo.objects.all()
+d.delete()
+dojo= Dojo.objects.create(name="Simon", city="Sttugrat",state="Germany")
+dojo= Dojo.objects.create(name="Jaap", city="Amesterdam",state="Netherlan")
+dojo= Dojo.objects.create(name="Soud", city="Hebron",state="Palestine")
+
+
+ninja= Ninja.objects.create(first_name="Fabian", last_name="Russ",dojo=Dojo.objects.get(name="Simon"))
+ninja= Ninja.objects.create(first_name="Fanz", last_name="Wiszker",dojo=Dojo.objects.get(name="Simon"))
+ninja= Ninja.objects.create(first_name="lea", last_name="hannce",dojo=Dojo.objects.get(name="Simon"))
+
+ninja= Ninja.objects.create(first_name="Olievier", last_name="Donnat",dojo=Dojo.objects.get(name="Jaap"))
+ninja= Ninja.objects.create(first_name="Juielle", last_name="Mac",dojo=Dojo.objects.get(name="Jaap"))
+ninja= Ninja.objects.create(first_name="Dirk", last_name="Diprize",dojo=Dojo.objects.get(name="Jaap"))
+
+ninja= Ninja.objects.create(first_name="Hana", last_name="AlBidaq",dojo=Dojo.objects.get(name="Soud"))
+ninja= Ninja.objects.create(first_name="Majed", last_name="Amira",dojo=Dojo.objects.get(name="Soud"))
+ninja= Ninja.objects.create(first_name="Shady", last_name="Shareef",dojo=Dojo.objects.get(name="Soud"))
+
+Ninja.objects.get(dojo=Dojo.objects.get(name="Simon")) // Ninja.objects.first(dojo=Dojo.objects.get())
+Ninja.objects.get(dojo=Dojo.objects.get(name="Soud"))  //Ninja.objects.last(dojo=Dojo.objects.get())
+
+Dojo.objects.last(ninja=Ninja.objects.get())
+
+
+dojo= Dojo.objects.create(name="Rahaf", city="Ramallah",state="Palestine", desc="")
+
+
