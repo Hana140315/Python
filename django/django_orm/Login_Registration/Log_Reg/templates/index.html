@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <table>
+        <tr>
+            <th>
+                <h1>Regisration</h1>
+                <form action="/register" method="post">
+                    {%csrf_token%}
+                    <label >First Name</label>
+                    <input type="text" name="first_name" required><br><br>
+                    
+                    <label for="last_name">Last Name</label>
+                    <input type="text" name="last_name"><br><br>
+                    
+                    <label >E-mail</label>
+                    <input type="text" name="email" required><br><br>
+                    
+                    <label for="password">Password</label>
+                    <input type="password" name="password" required><br><br>
+                    
+                    <label for="conf_password">Confirm your Password</label>
+                    <input type="password" name="conf_password" required><br><br>
+                    <input type="submit"  value="Register">
+                </form>
+            </th>
+            <th>
+                <h1>Login</h1>
+                <form action="login" method="post">
+                    {%csrf_token%}
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email"><br><br>
+                    
+                    <label for="password">Password</label>
+                    <input type="password" name="password"><br><br>
+                    <input type="submit"  value="Log in">
+                </form>
+            </th>
+        </tr>
+    </table>
+    {% if messages %}
+   <ul class="messages">    
+       {% for message in messages %}    
+           <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+       {% endfor %}
+   </ul>
+    {% endif %}
+
+</body>
+</html>
