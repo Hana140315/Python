@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Read (one)</title>
+</head>
+<body>
+    <a href="/"> Go Back</a>
+    
+    <input type="hidden" name="show_id" value="{{x.id}}" />
+    <h2>TV Show{{x.show.id}}</h2>
+    <h3>Title: {{x.title}}</h3>
+    <h3>Network: {{x.network}}</h3>
+    <h3>Release Date: {{x.release_date}}</h3>
+    <h3>Description: {{x.desc}}</h3>
+    <h3>Last updated : {{x.updated}}</h3>
+    <a href="/">Edit</a>
+    <a href="/delete/{{show.id}}">Delete</a>
+</body>
+</html>

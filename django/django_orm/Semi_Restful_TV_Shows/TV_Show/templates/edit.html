@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+</head>
+<body>
+    <form action="/edit" method="post">
+        {%csrf_token%}
+        
+    <div class="cont">
+        <a href="/">Go Back</a>
+        <h1>Edit Show {{x.id}}</h1>
+        <input type="hidden" name="show_id" value="{{x.id}}" />
+        <div>
+            <label for="title">Show Title</label><br>
+            <input type="text" name="title" value={{x.title}} ><br><br>
+        </div>
+        <div>
+            <label for="network">Network</label><br>
+            <input type="text" name="network" value={{x.network}}><br><br>
+        </div>
+        <div>
+            <label for="relaese_date">Release Date</label><br>
+            <input type="date" name="release_date" value="{{x.release_date|date:'Y-m-d'}}"><br><br>
+        </div>
+        <div>
+            <label for="desc">Description</label><br>
+            <textarea name="desc" id="" cols="30" rows="10" value="{{x.desc}}"></textarea><br><br>
+        </div>
+        <div>
+            <input type="submit"  value="Update"><br>
+            <a href="show_details/{{show.id}}">Go to show</a>
+
+        </div>
+    </div>
+</form>
+
+</body>
+</html>
