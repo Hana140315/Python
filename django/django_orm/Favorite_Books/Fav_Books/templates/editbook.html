@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table>
+        <tr>
+            <th><h1>Welcome {{user.first_name}} !</h1></th>
+            <th><a href="">Log Out</a></th>
+        </tr>
+        <tr>
+            {% if user.id == book.Bupload.id %}
+            <td>  
+                <form action="/{{book.id}}/update" method="post">
+                    {%csrf_token%}
+                    <!-- <input type="hidden" name="book_id" value="{{book.id}}" /> -->
+                    <label for="Btitle" >Title</label>
+                    <input type="text" name="Btitle" value="{{book.Btitle}}" required><br><br>
+                    <p>Added by: {{book.Bupload.first_name}}{{book.Bupload.last_name}}</p>
+                    <p>Added on:{{book.created_at}}</p><br>
+                    <p>Last Update on: {{book.update_at}}</p><br>
+                    <label for="Bdesc" >Description</label>
+                    <textarea name="Bdesc" value="{{book.Bdesc}}" id="" cols="30" rows="10"></textarea><br><br>
+                    <input type="submit"  value="Update">
+
+                </form>
+                <form action="delete" method="post">
+                    <input type="submit"  value="delete">
+                </form>
+            </td>
+            {%else%}
+            <td>
+                <p>Title : {{book.Btitle}}</p>
+                <p>Added by: {{book.Bupload.first_name}}{{book.Bupload.last_name}}</p>
+                <p>Added on:{{book.created_at}}</p><br>
+                <p>Last Update on: {{book.update_at}}</p><br>
+                <p> Description: {{book.Bdesc}}</p>
+            </td>
+            {%endif%}
+
+            <td>
+                <h1> User Who like this Book:</h1>
+
+            {% for u in thisuser %}
+            <ul>
+               <li>{{z.first_name}}{{z.last_name}}</li> 
+               {% endfor %}
+               {%if likedthisbook%}
+               <a href="rem_fav/{{z.id}}"> Un-Faviorte</a>
+               {%endif%}
+            </ul>
+            
+            </td>
+
+        </tr>
+    </table>
+</body>
+</html>
