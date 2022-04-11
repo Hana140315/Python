@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body style="height: 100%;
+width:100%; display: flex; flex-direction: column;">
+
+    
+    <div style="display: flex;
+    background-color: rgb(116, 209, 139);
+    border: 2px solid black;
+    font-family: cursive;
+    width: 100%;
+    height: 10%;
+    justify-content: space-between;">
+        <h1 style="color: white;" >CodingDojo Wall</h1>
+        <div style="display: flex;
+        width:20%;
+        align-items: center;
+        justify-content: space-around;">
+            <h3  style="color: white; align-items: center;">welcom {{user.first_name}}</h3>
+            <a href="/" style="text-align: center; height: 50%;">log out</a>
+        </div>
+        
+    </div><br>
+    <form action="/addPost" method="post">
+        {% csrf_token %}
+        <div style="width: 80%; height: 60%; margin-left: 10%;">
+            <p>Post a message</p>
+            <input type="text" name="post" style="width: 100%; overflow: scroll; height: 100%; border: 2px solid black;"></input>
+            <button type="submit" style="background-color: rgb(69, 69, 206); color: aliceblue; height: 30px; margin-left: 90%;">post a message</button>
+        </div>
+
+    </form>
+    <table style="width: 80%; height: 800px; margin-left: 10%; border: 2px solid black; background-color:rgb(219, 169, 104) ; overflow: scroll;">
+        {%for m in messages%}
+        <tr style=" border: 2px solid black;">
+            <p style="margin-left: 12%;font-family: cursive;">{{m.user.first_name}} <span></span> {{m.user.last_name}}-{{m.created_at}}</p>
+            {%if user.id == m.user.id %}
+            <a href="#">delete</a>
+            {%endif%}
+            <p style="margin-left: 15%; font-family: cursive;">{{m.message}}</p>
+            
+                {%for c in m.comments.all%}
+                <p style="margin-left: 17%; font-family: cursive; color: rgb(107, 27, 181);">{{c.user.first_name}}-{{c.user.last_name}}{{c.created_at}}</p>
+                <p style="margin-left: 17%; font-family: cursive; color: rgb(190, 137, 238);">{{c.comment}}</p>
+                {%endfor%}
+            
+            <form action="/addcomment/{{user.id}}/{{m.id}}" method="post">
+                {% csrf_token %}
+            <p style="margin-left: 17%; font-family: cursive;">post a comment</p>
+            <input type="text" name ="comment" style=" width: 75%; margin-left: 17%; border: 2px solid black;">
+            <button type="submit" style="background-color: rgb(8, 112, 29); color: aliceblue; height: 30px; margin-left: 82%; width: 10%;">post a comment</button>
+            </form>
+        </tr>
+        {%endfor%}
+
+</table>
+</body>
+</html>

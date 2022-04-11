@@ -1,0 +1,22 @@
+header{
+    display: flex;
+    background-color: rgb(116, 209, 139);
+    border: 2px solid black;
+    font-family: cursive;
+    width: 100%;
+    height: 15%;
+    justify-content: space-around;
+
+}
+html , body{
+    height: 100%;
+    width:100%;
+
+}
+h1,h3{
+    color: white;
+}
+div{
+    display: flex;
+    width:30%
+}
