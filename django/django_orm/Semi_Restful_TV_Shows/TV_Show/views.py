@@ -1,6 +1,7 @@
 from multiprocessing import context
 from urllib import request
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from .models import *
 from . import models
 
@@ -16,11 +17,16 @@ def shows(request):
     return render(request,'shows.html',context)
 
 def new(request):
-
+    errors = Show.objects.basic_validator(request.POST)
+    if len(errors) > 0:
+        for key, value in errors.items():
+            messages.error(request, value)
+        return redirect('/')            
     return render(request,'new.html')
 
 def create_show(request):
     print(request.POST)
+    
     models.newshow(request.POST)
     return redirect('/')
 
